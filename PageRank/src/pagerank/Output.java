@@ -24,9 +24,10 @@ public class Output {
         });
     }
     
-    public void write2(HashMap<String, Float> temp){
-        float sum = 0;
-        for (Map.Entry<String, Float> temp2 : temp.entrySet()) {
+    public void write2(HashMap<String, Double> temp){
+        double sum = 0;
+        System.out.println("Iterasi 5");
+        for (Map.Entry<String, Double> temp2 : temp.entrySet()) {
             sum += temp2.getValue();
             System.out.println("key : " + temp2.getKey() + ", value : " + temp2.getValue());
         }

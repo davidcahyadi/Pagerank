@@ -16,9 +16,9 @@ import java.util.Map;
 public class PageRank {
     HashMap<String,ArrayList<String>> outgoing = new HashMap<>();
     HashMap<String,ArrayList<String>> ingoing = new HashMap<>();
-    HashMap<String,Float> outGoingPage = new HashMap<>();
+    HashMap<String, Double> outGoingPage = new HashMap<>();
 
-    final float D = 0.85f;
+    final double D = 0.85f;
     int ITERATION = 4;
     public PageRank(HashMap<String,ArrayList<String>>[] graph) {
         outgoing = graph[0];
@@ -28,44 +28,41 @@ public class PageRank {
     
     public void Rank(){
        outgoing.forEach((key, value) -> {
-           outGoingPage.put(key, 1f/(float) outgoing.size());
+           outGoingPage.put(key, 1f/(double) outgoing.size());
        });
-       for (Map.Entry<String, Float> temp2 : outGoingPage.entrySet()) {
-       }
        
-       int dp = 0;
+       double dp = 0;
        int j = 0, k;
-       for (Map.Entry<String, ArrayList<String>> out : outgoing.entrySet()) {
-           k = 0;
-           Map.Entry<String,Float> temp = null;
-           for (Map.Entry<String, Float> outg : outGoingPage.entrySet()) {
-               if(k == j){
-                   temp = outg;
-               }
-               k++;
-           }
-           if(out.getValue().isEmpty()){
-               dp += D * temp.getValue() / outGoingPage.size();
-           }
-           j++;
-       }
        
        while(ITERATION > 0){
-           HashMap<String,Float> inGoingPage = new HashMap<>();
-           for (Map.Entry<String, Float> entry : outGoingPage.entrySet()) {
-               inGoingPage.put(entry.getKey(), 1f);
+           System.out.println("Iterasi " + (5-ITERATION));
+           dp = 0;
+           for (Map.Entry<String, ArrayList<String>> out : outgoing.entrySet()) {
+               Map.Entry<String,Double> temp = null;
+               for (Map.Entry<String, Double> outg : outGoingPage.entrySet()) {
+                   if(out.getKey().equals(outg.getKey())){
+                       temp = outg;
+                   }
+               }
+               if(out.getValue().isEmpty()){
+                   dp += D * temp.getValue() / outGoingPage.size();
+               }
            }
-           float awal = dp + (1 - D) / outGoingPage.size();
-           for (Map.Entry<String, Float> entry : inGoingPage.entrySet()) {
+           
+           HashMap<String,Double> inGoingPage = new HashMap<>();
+           for (Map.Entry<String, Double> entry : outGoingPage.entrySet()) {
+               inGoingPage.put(entry.getKey(), 0d);
+           }
+           double awal = (double) (dp + (1 - D) / outGoingPage.size());
+           for (Map.Entry<String, Double> entry : inGoingPage.entrySet()) {
                entry.setValue(awal);
            }
-//               temp.setValue(awal);
+
            for (Map.Entry<String, ArrayList<String>> entry : ingoing.entrySet()) {
                if(!entry.getValue().isEmpty()){
                    j = 0;
                    for (int i = 0; i < entry.getValue().size(); i++) {
                        Map.Entry<String, ArrayList<String>> temp2 = null;
-                       int index = 0;
                        for (Map.Entry<String, ArrayList<String>> entry1 : outgoing.entrySet()) {
                            k = 0;
                            if(j < entry.getValue().size()){
@@ -74,9 +71,8 @@ public class PageRank {
                                }
                            }
                        }
-                       Map.Entry<String,Float> temp3 = null;
-                       index = 0;
-                       for (Map.Entry<String, Float> entry1 : outGoingPage.entrySet()) {
+                       Map.Entry<String,Double> temp3 = null;
+                       for (Map.Entry<String, Double> entry1 : outGoingPage.entrySet()) {
                            k = 0;
                            if(j < entry.getValue().size()){
                                if(entry1.getKey().equals(entry.getValue().get(j))){
@@ -84,8 +80,8 @@ public class PageRank {
                                }
                            }
                        }
-                       Map.Entry<String,Float> temp4 = null;
-                       for (Map.Entry<String, Float> entry1 : inGoingPage.entrySet()) {
+                       Map.Entry<String,Double> temp4 = null;
+                       for (Map.Entry<String, Double> entry1 : inGoingPage.entrySet()) {
                            if(entry1.getKey().equals(entry.getKey())){
                                temp4 = entry1;
                            }
@@ -95,12 +91,21 @@ public class PageRank {
                    }
                }
            }
-           ITERATION--;
            outGoingPage = inGoingPage;
+           double sum = 0;
+           if(ITERATION > 0){
+               for (Map.Entry<String, Double> temp2 : outGoingPage.entrySet()) {
+                   sum += temp2.getValue();
+                   System.out.println("key : " + temp2.getKey() + ", value : " + temp2.getValue());
+               }
+               System.out.println("sum : " + sum);
+               System.out.println("");
+           }
+           ITERATION--;
        }
     }
     
-    public HashMap<String, Float> take(){
+    public HashMap<String, Double> take(){
         return outGoingPage;
     }
 }

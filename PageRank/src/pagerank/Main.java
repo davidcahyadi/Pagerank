@@ -20,7 +20,6 @@ public class Main {
         Input in = new Input();
         Output out = new Output();
         PageRank pg = new PageRank(in.read(path));
-//        out.write(in.read(path));
         out.write2(pg.take());
     }
 }
