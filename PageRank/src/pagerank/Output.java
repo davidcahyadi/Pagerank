@@ -25,7 +25,6 @@ public class Output {
     }
     
     public void write2(HashMap<String, Float> temp){
-        System.out.println("");
         float sum = 0;
         for (Map.Entry<String, Float> temp2 : temp.entrySet()) {
             sum += temp2.getValue();
