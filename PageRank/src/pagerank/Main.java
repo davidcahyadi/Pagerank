@@ -19,6 +19,8 @@ public class Main {
         String path = sc.nextLine();
         Input in = new Input();
         Output out = new Output();
-        out.write(in.read(path));
+        PageRank pg = new PageRank(in.read(path));
+//        out.write(in.read(path));
+        out.write2(pg.take());
     }
 }

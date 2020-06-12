@@ -7,13 +7,13 @@ package pagerank;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author david
  */
 public class Output {
-    
     public void write(HashMap<String,ArrayList<String>>[] hash){
         hash[0].forEach((key,val) ->{
             System.out.print(">> " + key + " => ");
@@ -22,5 +22,15 @@ public class Output {
             }
             System.out.println();
         });
+    }
+    
+    public void write2(HashMap<String, Float> temp){
+        System.out.println("");
+        float sum = 0;
+        for (Map.Entry<String, Float> temp2 : temp.entrySet()) {
+            sum += temp2.getValue();
+            System.out.println("key : " + temp2.getKey() + ", value : " + temp2.getValue());
+        }
+        System.out.println("sum : " + sum);
     }
 }
