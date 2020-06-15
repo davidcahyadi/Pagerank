@@ -17,13 +17,18 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) {
+        System.out.println("=================== PAGE RANK ===================");
+        System.out.println("| Masukkan nama file yang akan dihitung datanya |");
+        System.out.println("| contoh : t1.txt                               |");
+        System.out.println("| Ada 6 file, dari t0 sampai t5                 |");
+        System.out.println("=================================================");
         System.out.print("Path : ");
         String path = sc.nextLine();
         Input in = new Input();
         Output out = new Output();
         HashMap<String,ArrayList<String>>[] hash = in.read(path);
+        out.cetakInisiasi(hash);
         PageRank pg = new PageRank(hash);
-        out.write(hash);
-        out.write2(pg.take());
+        out.cetakHasil(pg.take());
     }
 }

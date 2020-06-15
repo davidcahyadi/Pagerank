@@ -14,8 +14,8 @@ import java.util.Map;
  * @author david
  */
 public class Output {
-    public void write(HashMap<String,ArrayList<String>>[] hash){
-        System.out.println("Outgoing : ");
+    public void cetakInisiasi(HashMap<String,ArrayList<String>>[] hash){
+        System.out.println("\nOutgoing : ");
         hash[0].forEach((key,val) ->{
             System.out.print(">> " + key + " => ");
             for (String string : val) {
@@ -23,7 +23,7 @@ public class Output {
             }
             System.out.println();
         });
-        System.out.println("Ingoing : ");
+        System.out.println("\nIngoing : ");
         hash[1].forEach((key,val) ->{
             System.out.print(">> " + key + " => ");
             for (String string : val) {
@@ -33,12 +33,12 @@ public class Output {
         });
     }
     
-    public void write2(HashMap<String, Double> temp){
+    public void cetakHasil(HashMap<String, Double> temp){
         double sum = 0;
         System.out.println("Iterasi 5");
-        for (Map.Entry<String, Double> temp2 : temp.entrySet()) {
-            sum += temp2.getValue();
-            System.out.println("key : " + temp2.getKey() + ", value : " + temp2.getValue());
+        for (Map.Entry<String, Double> entry : temp.entrySet()) {
+            sum += entry.getValue();
+            System.out.println("key : " + entry.getKey() + ", value : " + entry.getValue());
         }
         System.out.println("sum : " + sum);
     }
