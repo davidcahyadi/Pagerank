@@ -5,6 +5,8 @@
  */
 package pagerank;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -19,7 +21,9 @@ public class Main {
         String path = sc.nextLine();
         Input in = new Input();
         Output out = new Output();
-        PageRank pg = new PageRank(in.read(path));
+        HashMap<String,ArrayList<String>>[] hash = in.read(path);
+        PageRank pg = new PageRank(hash);
+        out.write(hash);
         out.write2(pg.take());
     }
 }

@@ -15,7 +15,16 @@ import java.util.Map;
  */
 public class Output {
     public void write(HashMap<String,ArrayList<String>>[] hash){
+        System.out.println("Outgoing : ");
         hash[0].forEach((key,val) ->{
+            System.out.print(">> " + key + " => ");
+            for (String string : val) {
+                System.out.print(string + ", ");
+            }
+            System.out.println();
+        });
+        System.out.println("Ingoing : ");
+        hash[1].forEach((key,val) ->{
             System.out.print(">> " + key + " => ");
             for (String string : val) {
                 System.out.print(string + ", ");
