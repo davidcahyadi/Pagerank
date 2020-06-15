@@ -5,7 +5,11 @@
  */
 package pagerankGUI;
 
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
+import pagerank.PageRank;
 
 /**
  *
@@ -48,6 +52,11 @@ public class InputMenu extends javax.swing.JPanel {
         });
 
         next.setText("Next");
+        next.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Input Page");
 
@@ -67,10 +76,6 @@ public class InputMenu extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(next)
-                .addGap(23, 23, 23))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(341, 341, 341)
@@ -78,9 +83,12 @@ public class InputMenu extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(add)
-                            .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(275, Short.MAX_VALUE))
+                            .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(add)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 821, Short.MAX_VALUE)
+                                .addComponent(next)))))
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,13 +109,32 @@ public class InputMenu extends javax.swing.JPanel {
         // TODO add your handling code here:
         charIdx++;
         String s = Character.toString((char) charIdx);
-        int x = rand.nextInt(display.getWidth()-50)+25;
-        int y = rand.nextInt(display.getHeight()-50)+25;
-        display.addNode(new Node(x,y, 20,s,display));
+        int nodex = rand.nextInt(display.getWidth()-50)+25;
+        int nodey = rand.nextInt(display.getHeight()-50)+25;
+        display.addNode(new Node(nodex,nodey, 20,s,display));
         
     }//GEN-LAST:event_addActionPerformed
 
+    private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_nextActionPerformed
 
+
+    private void runPageRank(){
+        HashMap<String,ArrayList<String>>[] graph = new HashMap[2];
+        graph[0] = display.outgoing;
+        graph[1] = display.ingoing;
+        PageRank pagerank = new PageRank(graph);
+        pagerank.Rank();
+        HashMap<String,Double> result = pagerank.take();
+        for (Component component : display.getComponents()) {
+            if(component instanceof Node){
+                
+            }
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
     private pagerankGUI.Display display;

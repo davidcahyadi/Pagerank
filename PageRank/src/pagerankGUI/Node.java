@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import javafx.util.Pair;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -75,22 +76,27 @@ public class Node extends JComponent{
     private String s;
     private HashMap<String,ArrayList<String>> outgoing,ingoing;
     private Display display;
-    
+    private Color color;
+    private Color fadedColor;
+    private Random rand = new Random();
     public Node(int x,int y,int radius,String s,Display display){
-        this.x = x-radius;
-        this.y = y-radius;
+        this.x = x;
+        this.y = y;
         this.radius = radius;
         this.diameter = radius*2;
         this.s = s;
         this.outgoing = display.outgoing;
         this.ingoing = display.ingoing;
         this.display = display;
+        this.color = new Color(rand.nextInt(128),rand.nextInt(128),rand.nextInt(128));
+        this.fadedColor = new Color((int)(1.6*this.color.getRed()),(int)(1.6*this.color.getGreen()),(int) (1.6*this.color.getBlue()));
+        
         init();
     }
     
     
     private void init(){
-        this.setBounds(getX(), getY(), diameter, diameter);
+        this.setBounds(x-getRadius(), y-getRadius(), diameter, diameter);
         this.setPreferredSize(new Dimension(diameter,diameter));
         this.setName("");
         this.addMouseMotionListener(new MouseMotionAdapter() {
@@ -114,7 +120,7 @@ public class Node extends JComponent{
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setColor(Color.red);
+        g2d.setColor(this.color);
         g2d.fillOval(0, 0, diameter, diameter);
         drawCenterString(g2d);
     }
@@ -122,12 +128,13 @@ public class Node extends JComponent{
     private void setPos(int x, int y){
         this.x = x;
         this.y = y;
+        
         this.setBounds(x-getRadius(), y-getRadius(), diameter, diameter);
         repaint();
     }
     
     private void drawCenterString(Graphics2D g){
-        g.setColor(Color.black);
+        g.setColor(Color.white);
         // rectangle of object
         Rectangle rect = new Rectangle(0,0,diameter,diameter);
         // create font

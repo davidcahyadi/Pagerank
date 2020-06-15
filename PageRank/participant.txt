@@ -1,0 +1,37 @@
+Link Dokumen :
+https://www.notion.so/Project-Data-Structure-48f88af255534e9dbfeb311d397c4972
+
+David Cahyadi (219116784) : DC
+Williandy Takhta (219116798) : WT
+Jonathan Arelio (219116789) : JA
+Ariel Pratama (219116801) : AP
+
+Pseudo code python :
+oleh DC dan WT
+
+Untuk Test Case :
+- Test case 0 :
+	- Dicari oleh : DC
+	- Tracing oleh semua
+- Test case 1 :
+	- Dibuat oleh : WT
+	- Tracing oleh semua
+- Test case 2 :
+	- Dibuat oleh : WT
+	- Tracing oleh semua
+- Test case 3 :
+	- Dibuat oleh : JA
+	- Tracing oleh semua
+- Test case 4 :
+	- Dibuat oleh : AP
+	- Tracing oleh semua
+- Test case 5 :
+	- Dibuat oleh : AP
+	- Tracing oleh : JA dan AP
+- Gambar graph oleh : AP ( 3, 4, 5 ) dan WT ( gambar 1 , 2 )
+
+Program :
+- pagerank.java oleh AP dan JA
+- input.java oleh DC
+- output.java oleh DC dan JA
+- GUI - sementara : DC

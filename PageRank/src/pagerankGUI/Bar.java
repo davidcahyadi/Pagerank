@@ -37,7 +37,5 @@ public class Bar extends JComponent{
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setColor(Color.red);
-//        g2d.fillOval(0, 0, diameter, diameter);
-//        drawCenterString(g2d);
     }
 }

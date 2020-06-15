@@ -93,8 +93,8 @@ public class Display extends JPanel{
             drawArrow(
                     pair.getKey().getModifiedX(), 
                     pair.getKey().getModifiedY(), 
-                    pair.getValue().getModifiedX() - pair.getValue().getRadius(), 
-                    pair.getValue().getModifiedY() - pair.getValue().getRadius(),
+                    pair.getValue().getModifiedX(), 
+                    pair.getValue().getModifiedY(),
                     g
             );
         }
@@ -117,8 +117,8 @@ public class Display extends JPanel{
     }
     
     private void drawArrow(int x1,int y1,int x2,int y2, Graphics2D g){
-        int d = 18;
-        int h = 9;
+        int d = 30;
+        int h = 10;
         int dx = x2 - x1, dy = y2 - y1;
         double D = Math.sqrt(dx*dx + dy*dy);
         double xm = D - d, xn = xm, ym = h, yn = -h, x;
