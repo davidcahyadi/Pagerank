@@ -41,7 +41,7 @@ public class InputMenu extends javax.swing.JPanel {
         next = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         display = new pagerankGUI.Display();
-        ranking1 = new pagerankGUI.Ranking();
+        rangking = new pagerankGUI.Ranking();
 
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
@@ -74,14 +74,14 @@ public class InputMenu extends javax.swing.JPanel {
             .addGap(0, 450, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout ranking1Layout = new javax.swing.GroupLayout(ranking1);
-        ranking1.setLayout(ranking1Layout);
-        ranking1Layout.setHorizontalGroup(
-            ranking1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout rangkingLayout = new javax.swing.GroupLayout(rangking);
+        rangking.setLayout(rangkingLayout);
+        rangkingLayout.setHorizontalGroup(
+            rangkingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 250, Short.MAX_VALUE)
         );
-        ranking1Layout.setVerticalGroup(
-            ranking1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        rangkingLayout.setVerticalGroup(
+            rangkingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 450, Short.MAX_VALUE)
         );
 
@@ -93,18 +93,20 @@ public class InputMenu extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(341, 341, 341)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(add)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(822, 822, 822)
                                 .addComponent(next))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                                .addComponent(ranking1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rangking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(14, 14, 14)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -115,11 +117,11 @@ public class InputMenu extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ranking1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rangking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(next)
-                    .addComponent(add))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add)
+                    .addComponent(next))
                 .addGap(67, 67, 67))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -132,7 +134,9 @@ public class InputMenu extends javax.swing.JPanel {
         int nodey = rand.nextInt(display.getHeight()-50)+25;
         Node temp = new Node(nodex,nodey, 20,s,display);
         display.addNode(temp);
-        ranking1.addNode(temp);
+        rangking.addNode(temp);
+        rangking.revalidate();
+        rangking.repaint();
         display.repaint();
         display.revalidate();
     }//GEN-LAST:event_addActionPerformed
@@ -147,13 +151,12 @@ public class InputMenu extends javax.swing.JPanel {
         HashMap<String,ArrayList<String>>[] graph = new HashMap[2];
         graph[0] = display.outgoing;
         graph[1] = display.ingoing;
-        ranking1.updateBarsValue(1f/(double)display.outgoing.size());
+        rangking.updateBarsValue(1f/(double)display.outgoing.size());
         PageRank pagerank = new PageRank(graph);
         pagerank.Rank();
         ArrayList<HashMap<String,Double>> result = pagerank.take();
-        animate = new Animation(display, result, 1f/(double)display.outgoing.size());
-        animate.run();
-        
+        animate = new Animation(display, rangking, result, 1f/(double)display.outgoing.size());
+        animate.start();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -161,6 +164,6 @@ public class InputMenu extends javax.swing.JPanel {
     private pagerankGUI.Display display;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton next;
-    private pagerankGUI.Ranking ranking1;
+    private pagerankGUI.Ranking rangking;
     // End of variables declaration//GEN-END:variables
 }

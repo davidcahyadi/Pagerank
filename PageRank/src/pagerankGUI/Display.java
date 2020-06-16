@@ -80,25 +80,27 @@ public class Display extends JPanel{
     }
     
     private void createLine(Graphics2D g){
-        g.setColor(Color.green);
+        
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         g.setStroke(new BasicStroke(3));
         for (Pair<Node, Node> pair : singleLink) {
+            g.setColor(pair.getValue().getColor());
             g.drawLine(
                     pair.getKey().getModifiedX(), 
                     pair.getKey().getModifiedY(), 
                     pair.getValue().getModifiedX(), 
                     pair.getValue().getModifiedY()
             );
-            drawArrow(
-                    pair.getKey().getModifiedX(), 
-                    pair.getKey().getModifiedY(), 
-                    pair.getValue().getModifiedX(), 
-                    pair.getValue().getModifiedY(),
-                    g
-            );
+//            drawArrow(
+//                    pair.getKey().getModifiedX(), 
+//                    pair.getKey().getModifiedY(), 
+//                    pair.getValue().getModifiedX(), 
+//                    pair.getValue().getModifiedY(),
+//                    g
+//            );
         }
         for (Pair<Node, Node> pair : doubleLink) {
+            g.setColor(pair.getValue().getColor());
             g.drawLine(
                     pair.getKey().getModifiedX()-3, 
                     pair.getKey().getModifiedY()-3, 
@@ -106,6 +108,7 @@ public class Display extends JPanel{
                     pair.getValue().getModifiedY()-3
             );
             
+            g.setColor(pair.getKey().getColor());
             g.drawLine(
                     pair.getKey().getModifiedX()+3, 
                     pair.getKey().getModifiedY()+3, 
@@ -113,7 +116,6 @@ public class Display extends JPanel{
                     pair.getValue().getModifiedY()+3
             );
         }
-        System.out.println("Draw");
     }
     
     private void drawArrow(int x1,int y1,int x2,int y2, Graphics2D g){

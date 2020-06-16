@@ -16,11 +16,26 @@ import javax.swing.JPanel;
  * @author david
  */
 public class Ranking extends JPanel{
-    HashMap<String,Bar>bars = new HashMap<>();
+
+    /**
+     * @return the bars
+     */
+    public HashMap<String,Bar> getBars() {
+        return bars;
+    }
+
+    /**
+     * @param bars the bars to set
+     */
+    public void setBars(HashMap<String,Bar> bars) {
+        this.bars = bars;
+    }
+    private HashMap<String,Bar>bars ;
     int ctr;
-    
+    int nodeCount = 0;
     public Ranking() {
         init();
+        bars = new HashMap<>();
         ctr=10;
     }
     
@@ -31,21 +46,23 @@ public class Ranking extends JPanel{
         this.setMinimumSize(d);
         this.setPreferredSize(d);
         this.setBackground(Color.WHITE);
+        this.setBounds(0, 0, d.width, d.height);
     }
     
     public void addNode(Node node){
-        Bar bar = new Bar(node, 10, ctr, 10, this);
+        nodeCount++;
+        double zeroVal = 1d/(nodeCount*1.0);
+        Bar bar = new Bar(node, 10, ctr, zeroVal,this.getHeight());
+        updateBarsValue(zeroVal);
         this.add(bar);
-        bars.put(node.getS(), bar);
-        ctr+=20;
-        repaint();
-        revalidate();
+        getBars().put(node.getS(), bar); 
+        this.repaint();
+        this.revalidate();
+        ctr+=22;
     }
     public void updateBarsValue(double n){
-        for (Map.Entry<String, Bar> set : bars.entrySet()) {
-            set.getValue().setValue(n);
-            System.out.println("Updated bar value: " + n);
-            System.out.println("Bar key: " + set.getKey());
-        }
+        getBars().forEach((key,val)->{
+            val.setValue(n);
+        });
     }
 }

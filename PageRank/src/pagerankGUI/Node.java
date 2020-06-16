@@ -30,6 +30,34 @@ import javax.swing.JComponent;
 public class Node extends JComponent{
 
     /**
+     * @return the color
+     */
+    public Color getColor() {
+        return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    /**
+     * @return the fadedColor
+     */
+    public Color getFadedColor() {
+        return fadedColor;
+    }
+
+    /**
+     * @param fadedColor the fadedColor to set
+     */
+    public void setFadedColor(Color fadedColor) {
+        this.fadedColor = fadedColor;
+    }
+
+    /**
      * @return the radius
      */
     public int getRadius() {
@@ -90,7 +118,7 @@ public class Node extends JComponent{
         this.ingoing = display.ingoing;
         this.display = display;
         this.color = new Color(rand.nextInt(128),rand.nextInt(128),rand.nextInt(128));
-        this.fadedColor = new Color((int)(1.6*this.color.getRed()),(int)(1.6*this.color.getGreen()),(int) (1.6*this.color.getBlue()));
+        this.fadedColor = new Color((int)(1.6*this.getColor().getRed()),(int)(1.6*this.getColor().getGreen()),(int) (1.6*this.getColor().getBlue()));
         init();
     }
     
@@ -120,7 +148,7 @@ public class Node extends JComponent{
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setColor(this.color);
+        g2d.setColor(this.getColor());
         g2d.fillOval(0, 0, diameter, diameter);
         drawCenterString(g2d);
     }
