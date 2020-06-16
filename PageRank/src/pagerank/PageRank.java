@@ -17,6 +17,7 @@ public class PageRank {
     HashMap<String,ArrayList<String>> outgoing = new HashMap<>(); // berisi node yang ada di outgoing
     HashMap<String,ArrayList<String>> ingoing = new HashMap<>(); // berisi node yang ada di ingoing
     HashMap<String, Double> outGoingPage = new HashMap<>(); // berisi node yang ada di outgoing dengan hasil tracing
+    ArrayList<HashMap<String, Double>> result = new ArrayList<>();
 
     final double D = 0.85f;
     int ITERATION = 4;
@@ -104,6 +105,7 @@ public class PageRank {
                }
            }
            outGoingPage = inGoingPage; // setelah semua node selesai di hitung di satu iterasi, nilai akan dipassing ke outgoingPage
+           result.add(outGoingPage);
            double sum = 0;
            // output hasil setiap iterasi
            if(ITERATION > 1){
@@ -117,7 +119,7 @@ public class PageRank {
        }
     }
     
-    public HashMap<String, Double> take(){
-        return outGoingPage;
+    public ArrayList<HashMap<String, Double>> take(){
+        return result;
     }
 }

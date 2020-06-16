@@ -90,7 +90,6 @@ public class Node extends JComponent{
         this.display = display;
         this.color = new Color(rand.nextInt(128),rand.nextInt(128),rand.nextInt(128));
         this.fadedColor = new Color((int)(1.6*this.color.getRed()),(int)(1.6*this.color.getGreen()),(int) (1.6*this.color.getBlue()));
-        
         init();
     }
     
@@ -162,6 +161,9 @@ public class Node extends JComponent{
             display.updateLink(new Pair(motherNode,this));
             motherNode = null;
         }
-        
+    }
+    public void updateRadius(int n){
+        this.radius = n;
+        this.diameter = n*2;
     }
 }
