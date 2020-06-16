@@ -1,0 +1,35 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package pagerankGUI;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.*;
+import javax.swing.JPanel;
+
+/**
+ *
+ * @author david
+ */
+public class Ranking extends JPanel{
+    ArrayList<Bar> bars = new ArrayList<>();
+    
+    public Ranking() {
+        init();
+    }
+    
+    private void init(){
+        Dimension d = new Dimension(250,450);
+        this.setSize(d);
+        this.setMaximumSize(d);
+        this.setMinimumSize(d);
+        this.setPreferredSize(d);
+        this.setBackground(Color.WHITE);
+    }
+    
+    
+}
