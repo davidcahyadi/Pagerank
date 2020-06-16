@@ -23,9 +23,11 @@ public class MainPanel extends javax.swing.JPanel {
     Random rand = new Random();
     int charIdx = 64;
     Animation animate;
-    
+    public static int ctr;
     public MainPanel() {
         initComponents();
+        ctr=0;
+        iterationLabel.setText("Iterasi ke-" + ctr);
     }
     
     /**
@@ -43,6 +45,7 @@ public class MainPanel extends javax.swing.JPanel {
         display = new pagerankGUI.Display();
         rangking = new pagerankGUI.Ranking();
         jLabel2 = new javax.swing.JLabel();
+        iterationLabel = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
@@ -55,7 +58,7 @@ public class MainPanel extends javax.swing.JPanel {
             }
         });
 
-        next.setText("Next");
+        next.setText("Run");
         next.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextActionPerformed(evt);
@@ -88,6 +91,8 @@ public class MainPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Bar Diagram");
 
+        iterationLabel.setText("Iterasi ke-" + ctr);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,7 +102,9 @@ public class MainPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(add)
-                        .addGap(822, 822, 822)
+                        .addGap(367, 367, 367)
+                        .addComponent(iterationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(362, 362, 362)
                         .addComponent(next))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,14 +126,19 @@ public class MainPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rangking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add)
-                    .addComponent(next))
-                .addGap(67, 67, 67))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rangking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(add)
+                            .addComponent(next))
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(iterationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -162,10 +174,14 @@ public class MainPanel extends javax.swing.JPanel {
         animate = new Animation(display, rangking, result, 1f/(double)display.outgoing.size());
         animate.start();
     }
-    
+    public static void updateCtr(){
+        ctr++;
+        iterationLabel.setText("Iterasi ke-" + ctr);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
     private pagerankGUI.Display display;
+    public static javax.swing.JLabel iterationLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton next;

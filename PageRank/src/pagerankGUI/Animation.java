@@ -8,6 +8,8 @@ package pagerankGUI;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -47,6 +49,7 @@ public class Animation implements Runnable{
         result.get(0).forEach((key,val)->{
             currentValue.put(key, 1.0/size*1.0);
         });
+        MainPanel.updateCtr();
         for(int i =3; i>=0; i--){
             try {
                 result.get(i).forEach((String key,Double value)->{
@@ -79,6 +82,7 @@ public class Animation implements Runnable{
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            MainPanel.updateCtr();
         }
     }
     
