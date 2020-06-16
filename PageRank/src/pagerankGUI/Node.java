@@ -79,6 +79,7 @@ public class Node extends JComponent{
     private Color color;
     private Color fadedColor;
     private Random rand = new Random();
+    
     public Node(int x,int y,int radius,String s,Display display){
         this.x = x;
         this.y = y;
@@ -149,7 +150,7 @@ public class Node extends JComponent{
     }
     
     private void setLink(){
-        if(motherNode == null){
+        if(motherNode == null || motherNode.equals(this)){
             motherNode = this;
             System.out.println("Mother : "+ this.s);
         }
