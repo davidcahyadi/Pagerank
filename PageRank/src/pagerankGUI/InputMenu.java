@@ -131,7 +131,7 @@ public class InputMenu extends javax.swing.JPanel {
         pagerank.Rank();
         ArrayList<HashMap<String,Double>> result = pagerank.take();
         animate = new Animation(display, result, 1f/(double)display.outgoing.size());
-        animate.run();
+        animate.start();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

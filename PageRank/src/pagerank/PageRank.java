@@ -31,7 +31,6 @@ public class PageRank {
        outgoing.forEach((key, value) -> {
            outGoingPage.put(key, 1f/(double) outgoing.size());
        });
-       
        double dp = 0;
        int j; // untuk indexing value setiap node ingoing
        

@@ -16,8 +16,7 @@ import javax.swing.JPanel;
  * @author david
  */
 public class Ranking extends JPanel{
-    ArrayList<Bar> bars = new ArrayList<>();
-    
+    HashMap<String,Bar> bars = new HashMap<>();
     public Ranking() {
         init();
     }
@@ -32,4 +31,7 @@ public class Ranking extends JPanel{
     }
     
     
+    public void addNode(Node node){
+        bars.put(node.getName(),new Bar(node, WIDTH, WIDTH, WIDTH));
+    }
 }
