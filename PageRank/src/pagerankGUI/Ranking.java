@@ -16,10 +16,12 @@ import javax.swing.JPanel;
  * @author david
  */
 public class Ranking extends JPanel{
-    ArrayList<Bar> bars = new ArrayList<>();
+    HashMap<String,Bar>bars = new HashMap<>();
+    int ctr;
     
     public Ranking() {
         init();
+        ctr=10;
     }
     
     private void init(){
@@ -31,5 +33,19 @@ public class Ranking extends JPanel{
         this.setBackground(Color.WHITE);
     }
     
-    
+    public void addNode(Node node){
+        Bar bar = new Bar(node, 10, ctr, 10, this);
+        this.add(bar);
+        bars.put(node.getS(), bar);
+        ctr+=20;
+        repaint();
+        revalidate();
+    }
+    public void updateBarsValue(double n){
+        for (Map.Entry<String, Bar> set : bars.entrySet()) {
+            set.getValue().setValue(n);
+            System.out.println("Updated bar value: " + n);
+            System.out.println("Bar key: " + set.getKey());
+        }
+    }
 }
