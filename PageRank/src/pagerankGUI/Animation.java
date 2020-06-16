@@ -30,7 +30,7 @@ public class Animation implements Runnable{
     public void run() {
         for(int i =3; i>=0; i--){
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
                 for(Component item : display.getComponents()){
                     if(item instanceof Node){
                         ((Node) item).updateRadius((int) (result.get(i).get(((Node)item).getS())*20/ratio)*3); 

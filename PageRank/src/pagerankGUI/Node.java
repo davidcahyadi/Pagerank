@@ -165,5 +165,7 @@ public class Node extends JComponent{
     public void updateRadius(int n){
         this.radius = n;
         this.diameter = n*2;
+        this.setBounds(x-getRadius(), y-getRadius(), diameter, diameter);
+        this.setPreferredSize(new Dimension(diameter,diameter));
     }
 }
