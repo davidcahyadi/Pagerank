@@ -22,6 +22,8 @@ public class InputMenu extends javax.swing.JPanel {
      */
     Random rand = new Random();
     int charIdx = 64;
+    Animation animate;
+    
     public InputMenu() {
         initComponents();
     }
@@ -98,9 +100,9 @@ public class InputMenu extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add)
-                    .addComponent(next))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(next)
+                    .addComponent(add))
                 .addGap(67, 67, 67))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -117,7 +119,7 @@ public class InputMenu extends javax.swing.JPanel {
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
         // TODO add your handling code here:
-        
+        runPageRank();
     }//GEN-LAST:event_nextActionPerformed
 
 
@@ -127,12 +129,9 @@ public class InputMenu extends javax.swing.JPanel {
         graph[1] = display.ingoing;
         PageRank pagerank = new PageRank(graph);
         pagerank.Rank();
-        HashMap<String,Double> result = pagerank.take();
-        for (Component component : display.getComponents()) {
-            if(component instanceof Node){
-                
-            }
-        }
+        ArrayList<HashMap<String,Double>> result = pagerank.take();
+        animate = new Animation(display, result, 1f/(double)display.outgoing.size());
+        animate.run();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

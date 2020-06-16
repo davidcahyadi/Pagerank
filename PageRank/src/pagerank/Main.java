@@ -29,6 +29,6 @@ public class Main {
         HashMap<String,ArrayList<String>>[] hash = in.read(path);
         out.cetakInisiasi(hash);
         PageRank pg = new PageRank(hash);
-        out.cetakHasil(pg.take());
+        out.cetakHasil(pg.take().get(pg.take().size()-1));
     }
 }
