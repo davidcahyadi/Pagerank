@@ -44,20 +44,6 @@ public class Node extends JComponent{
     }
 
     /**
-     * @return the fadedColor
-     */
-    public Color getFadedColor() {
-        return fadedColor;
-    }
-
-    /**
-     * @param fadedColor the fadedColor to set
-     */
-    public void setFadedColor(Color fadedColor) {
-        this.fadedColor = fadedColor;
-    }
-
-    /**
      * @return the radius
      */
     public int getRadius() {
@@ -105,7 +91,6 @@ public class Node extends JComponent{
     private HashMap<String,ArrayList<String>> outgoing,ingoing;
     private Display display;
     private Color color;
-    private Color fadedColor;
     private Random rand = new Random();
     
     public Node(int x,int y,int radius,String s,Display display){
@@ -117,8 +102,7 @@ public class Node extends JComponent{
         this.outgoing = display.outgoing;
         this.ingoing = display.ingoing;
         this.display = display;
-        this.color = new Color(rand.nextInt(128),rand.nextInt(128),rand.nextInt(128));
-        this.fadedColor = new Color((int)(1.6*this.getColor().getRed()),(int)(1.6*this.getColor().getGreen()),(int) (1.6*this.getColor().getBlue()));
+        this.color = new Color(rand.nextInt(160),rand.nextInt(160),rand.nextInt(160));
         init();
     }
     

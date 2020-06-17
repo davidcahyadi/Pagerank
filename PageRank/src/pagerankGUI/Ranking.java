@@ -60,6 +60,7 @@ public class Ranking extends JPanel{
         this.revalidate();
         ctr+=22;
     }
+    
     public void updateBarsValue(double n){
         getBars().forEach((key,val)->{
             val.setValue(n);

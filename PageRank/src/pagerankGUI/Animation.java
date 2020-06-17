@@ -50,8 +50,9 @@ public class Animation implements Runnable{
             currentValue.put(key, 1.0/size*1.0);
         });
         MainPanel.updateCtr();
-        for(int i =3; i>=0; i--){
+        for(int i =0; i < 4; i++){
             try {
+                
                 result.get(i).forEach((String key,Double value)->{
                     final double newRadius = value*20/ratio;
                     final double currentRadius = nodeRealSize.get(key);
@@ -59,6 +60,7 @@ public class Animation implements Runnable{
                     deltaRadius.replace(key, (newRadius-currentRadius)/50);
                     deltaValue.replace(key, (value - currentValue.get(key))/50);
                     currentValue.replace(key,value);
+                    System.out.println(key + " : " + value);
                 });
                 
                 for(int j = 0; j < 50; j++){
@@ -79,8 +81,7 @@ public class Animation implements Runnable{
                     display.repaint();
                     Thread.sleep(40);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (InterruptedException e) {
             }
             MainPanel.updateCtr();
         }

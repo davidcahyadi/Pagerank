@@ -20,7 +20,7 @@ public class PageRank {
     ArrayList<HashMap<String, Double>> result = new ArrayList<>();
 
     final double D = 0.85f;
-    int ITERATION = 4;
+    int ITERATION = 5;
     public PageRank(HashMap<String,ArrayList<String>>[] graph) {
         outgoing = graph[0];
         ingoing = graph[1];
